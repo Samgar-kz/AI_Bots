@@ -1,13 +1,14 @@
-# Используем легковесный Python-образ
 FROM python:3.11-slim
 
-# Устанавливаем зависимости
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем файлы бота
+# Copy requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir --upgrade certifi
+
+# Copy all files into the container
 COPY . .
 
-# Запускаем бота
-CMD ["python", "bot/main.py"]
+CMD ["python", "bot.py"]
