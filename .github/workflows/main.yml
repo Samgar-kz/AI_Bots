@@ -21,7 +21,7 @@ jobs:
       - name: Подключаемся к серверу и деплоим
         run: |
           ssh -o StrictHostKeyChecking=no root@37.27.192.143 << 'EOF'
-            cd /path/to/your-bot
+            cd /opt/ai_bots
             git pull origin main
             docker-compose down
             docker-compose up --build -d
