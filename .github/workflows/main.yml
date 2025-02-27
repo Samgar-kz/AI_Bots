@@ -31,6 +31,7 @@ jobs:
             echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
             echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
             echo "GOOGLE_SHEETS_JSON=credentials.json" >> .env
+            
             echo '${{ secrets.GOOGLE_SHEETS_JSON }}' > credentials.json
 
             docker-compose down
