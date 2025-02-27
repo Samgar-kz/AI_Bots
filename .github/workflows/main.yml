@@ -3,26 +3,33 @@ name: Deploy AI Bot
 on:
   push:
     branches:
-      - main  # Запуск при пуше в main
+      - main # Runs on push to main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout репозитория
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Устанавливаем SSH-ключ
+      - name: Setup SSH Connection
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Подключаемся к серверу и деплоим
+      - name: Deploy to Server via SSH
         run: |
           ssh -o StrictHostKeyChecking=no root@37.27.192.143 << 'EOF'
-            cd /opt/ai_bots
+            cd /opt
             git pull origin main
+
+            # Create .env file with secrets
+            echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+            echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+            echo "GOOGLE_SHEETS_JSON=${{ secrets.GOOGLE_SHEET_CREDENTIALS }}" >> .env
+            echo "ANY_OTHER_KEY=${{ secrets.ANY_OTHER_KEY }}" >> .env
+
             docker-compose down
             docker-compose up --build -d
           EOF
