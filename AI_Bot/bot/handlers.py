@@ -1,6 +1,6 @@
 from aiogram import types
 from aiogram.filters import Command
-from google_sheets import get_product_info, get_faq_answer, log_query, get_company_name
+from google_sheets import get_product_info, get_faq_answer, log_query
 from openai_api import ask_openai
 from logger import logger
 
@@ -9,13 +9,8 @@ sessions = {}
 
 async def start_command(message: types.Message):
     """Приветственное сообщение с названием компании"""
-    user_id = message.from_user.id
-    company_name = get_company_name(user_id)  # Получаем название компании
-
-    if company_name:
-        greeting = f"👋 Привет! Добро пожаловать в *{company_name}*. Чем могу помочь?"
-    else:
-        greeting = "👋 Привет! Я ваш AI-ассистент. Напишите свой вопрос, и я помогу вам!"
+    
+    greeting = "👋 Привет! Я ваш AI-ассистент. Напишите свой вопрос, и я помогу вам!"
 
     await message.answer(greeting, parse_mode="Markdown")
 
