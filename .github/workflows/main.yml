@@ -18,11 +18,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy to Server via SSH
+      - name: Push Project Files to Server
+        run: |
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./ root@37.27.192.143:/opt/ai_bot/
+
+      - name: Deploy on Server
         run: |
           ssh -o StrictHostKeyChecking=no root@37.27.192.143 << 'EOF'
-            cd /opt
-            git pull origin main
+            cd /opt/ai_bot
 
             # Create .env file with secrets
             echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
