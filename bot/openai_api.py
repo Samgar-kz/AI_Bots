@@ -1,10 +1,11 @@
 import aiohttp
 import redis
+import os
 from config import OPENAI_API_KEY
 from logger import logger
 
 # Подключаем Redis для хранения истории диалогов
-redis_client = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+redis_client = redis.Redis(host="redis", port=6379, db=0, decode_responses=True)
 
 # Запрещенные слова (фильтрация спама и нежелательных тем)
 banned_words = ["оскорбление", "политика", "18+", "спам"]
