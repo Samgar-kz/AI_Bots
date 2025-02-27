@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy all files into the container
 COPY . .
 
-CMD ["python", "bot.py"]
+CMD ["python", "bot/main.py"]
