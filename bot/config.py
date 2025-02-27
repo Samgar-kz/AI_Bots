@@ -6,4 +6,4 @@ load_dotenv(".env.local")  # Загружаем переменные окруж�
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GOOGLE_SHEETS_JSON = os.getenv("GOOGLE_SHEETS_JSON")
-SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME")
+SPREADSHEET_NAME = "AI Bot 1"
