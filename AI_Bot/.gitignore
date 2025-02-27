@@ -5,6 +5,12 @@ __pycache__/
 *.pyo
 *.pyd
 
+# ⛔ Игнорируем конфиденциальные файлы
+.env
+config.json
+secrets.json
+credentials.json
+
 # ⛔ Игнорируем логи и кеши
 *.log
 logs/
@@ -14,6 +20,10 @@ db.sqlite3
 # ⛔ Игнорируем временные файлы ОС
 .DS_Store
 Thumbs.db
+
+# ⛔ Игнорируем файлы Docker
+docker-compose.override.yml
+.dockerignore
 
 # ⛔ Игнорируем зависимости в IDE
 .vscode/
