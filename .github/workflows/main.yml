@@ -20,7 +20,7 @@ jobs:
 
       - name: Подключаемся к серверу и деплоим
         run: |
-          ssh -o StrictHostKeyChecking=root@37.27.192.143 << 'EOF'
+          ssh -o StrictHostKeyChecking=no root@37.27.192.143 << 'EOF'
             cd /path/to/your-bot
             git pull origin main
             docker-compose down
