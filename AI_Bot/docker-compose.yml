@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  bot:
+    build: .
+    restart: always # 🔥 Автоматический перезапуск при сбоях
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    restart: always
